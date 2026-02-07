@@ -1,4 +1,4 @@
-# Light Up 2
+# Light Up 
 
 A puzzle game built with Godot where you manipulate light rays to reach a goal.
 
