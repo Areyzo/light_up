@@ -6,7 +6,9 @@ A puzzle game built with Godot where you manipulate light rays to reach a goal.
 
 Direct a light beam to hit the goal target by using mirrors and careful angle positioning. Once the light touches the goal, you win!
 
+
 ## Controls
+
 
 | Action | Key |
 |--------|-----|
