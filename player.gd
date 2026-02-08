@@ -63,20 +63,30 @@ func _process(delta: float) -> void:
 
 func show_win_popup() -> void:
 	has_won = true
+	get_tree().paused = true  # Pause the game
+	
 	var dialog = ConfirmationDialog.new()
 	dialog.title = "You Win!"
 	dialog.dialog_text = "You win!"
 	dialog.ok_button_text = "Play Again"
+	dialog.process_mode = Node.PROCESS_MODE_ALWAYS  # Allow dialog to process while paused
+	
 	add_child(dialog)
-	dialog.confirmed.connect(func(): get_tree().reload_current_scene())
+	
+	dialog.confirmed.connect(func(): 
+		get_tree().paused = false  # Unpause before reloading
+		get_tree().reload_current_scene()
+	)
+	
 	dialog.custom_action.connect(func(action: String):
 		if action == "quit":
+			get_tree().paused = false  # Unpause before quitting
 			get_tree().quit()
 	)
+	
 	dialog.add_button("Quit", false, "quit")
 	dialog.get_cancel_button().hide()
 	dialog.popup_centered_ratio(0.3)
-
 			
 
 
